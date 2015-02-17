@@ -41,7 +41,8 @@
 $route['default_controller'] = "welcome";
 $route['register'] = "/welcome/register";
 $route['login'] = "/welcome/login";
-$route['main'] = "/welcome/main";
+$route['logout'] = "/welcome/logout";
+$route['pokes'] = "/welcome/pokes";
 $route['poke/(:num)'] = "/welcome/poke/$1";
 $route['404_override'] = '';
 

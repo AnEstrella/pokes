@@ -4,18 +4,26 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('main');
+    if ($this->session->userdata('logged_in') == TRUE)
+    {
+      redirect('pokes');
+    }
+    else {$this->load->view('main');};
 	}
 
-	public function main()
+	public function pokes()
 	{
-    $this->load->model('User');
-    $this->load->model('Poke');
-    $poke_count = $this->Poke->poke_count($this->session->userdata('id'));
-    $users_pokes = $this->Poke->users_pokes($this->session->userdata('id'));
-    $all_users = $this->User->all_users($this->session->userdata('id'));
-		$this->load->view('pokes', array('users_pokes' => $users_pokes, 'all_users' => $all_users, 'poke_count' => $poke_count));
-	}
+    if ($this->session->userdata('logged_in') == TRUE) 
+    {
+      $this->load->model('User');
+      $this->load->model('Poke');
+      $poke_count = $this->Poke->poke_count($this->session->userdata('id'));
+      $users_pokes = $this->Poke->users_pokes($this->session->userdata('id'));
+      $all_users = $this->User->all_users($this->session->userdata('id'));
+  		$this->load->view('pokes', array('users_pokes' => $users_pokes, 'all_users' => $all_users, 'poke_count' => $poke_count));
+    }
+    else {redirect('/');};
+  }
 
 	public function register()
 	{
@@ -111,6 +119,7 @@ class Welcome extends CI_Controller {
 	}
 	public function logout()
 	{
+    $this->session->set_userdata('logged_in', FALSE);
 		$this->session->unset_userdata();
 		redirect('/');
 	}
@@ -120,7 +129,7 @@ class Welcome extends CI_Controller {
     $this->load->model("Poke");
     $poker_id = $this->session->userdata('id');
     $update_item = $this->Poke->add_poke($poker_id, $pokee_id);
-    redirect('main');
+    redirect('pokes');
 	}
 }
 

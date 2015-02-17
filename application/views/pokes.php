@@ -4,16 +4,8 @@
 </head>
 <body>
 
-<script>
-$document.ready(function(){
-	$('#poke').on('click', function(){
-		$.post
-	})
-})
-</script>
-
 <h1>Welcome, <?= $this->session->userdata('name') ?>!</h1>
-<a href="welcome/logout">Logout</a>
+<a href="logout">Logout</a>
 <h2><?= $poke_count['COUNT(*)'] ?> people poked you!</h2>
 
 <ul>

@@ -18,34 +18,6 @@ USE `pokes_db`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `pokers`
---
-
-DROP TABLE IF EXISTS `pokers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `pokers` (
-  `user_id` int(11) NOT NULL,
-  `pokes_user_id` int(11) NOT NULL,
-  `users_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`),
-  KEY `fk_pokers_pokes1_idx` (`pokes_user_id`),
-  KEY `fk_pokers_users1_idx` (`users_id`),
-  CONSTRAINT `fk_pokers_pokes1` FOREIGN KEY (`pokes_user_id`) REFERENCES `pokes` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_pokers_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pokers`
---
-
-LOCK TABLES `pokers` WRITE;
-/*!40000 ALTER TABLE `pokers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pokers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `pokes`
 --
 
@@ -53,12 +25,11 @@ DROP TABLE IF EXISTS `pokes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pokes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `poker_id` varchar(45) DEFAULT NULL,
-  `amount` varchar(45) DEFAULT NULL,
-  `users_id` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `poker_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +38,7 @@ CREATE TABLE `pokes` (
 
 LOCK TABLES `pokes` WRITE;
 /*!40000 ALTER TABLE `pokes` DISABLE KEYS */;
-INSERT INTO `pokes` VALUES (5,'10','4',NULL);
+INSERT INTO `pokes` VALUES (1,15,12),(2,15,13),(3,5,15),(4,5,18),(5,15,12),(6,15,12),(7,12,10),(8,15,5),(9,15,5),(10,15,10),(11,15,10),(12,15,10),(13,15,12),(14,10,15),(15,10,15),(16,10,15),(17,12,15),(18,5,15),(19,10,15),(20,13,5),(21,13,5),(22,13,5),(23,18,5),(24,18,5),(25,18,5),(26,18,5),(27,18,5),(28,18,5),(29,18,5),(30,18,5),(31,10,5),(32,12,5),(33,13,5),(34,15,5),(35,18,5),(36,5,15),(37,13,15),(38,10,19),(39,19,5),(40,19,5),(41,19,5),(42,20,5);
 /*!40000 ALTER TABLE `pokes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,10 +57,8 @@ CREATE TABLE `users` (
   `dob` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `logged_in` varchar(45) DEFAULT NULL,
-  `pokes` varchar(45) DEFAULT '0',
-  `poker_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +67,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (5,'Andrea','DreDre','asdfasdf','01/01/2015','estrella.drea@gmail.com',NULL,'5',NULL),(10,'Estrella','Star','asdfasdf','01/01/2015','an.estrella@yahoo.com',NULL,'1',NULL),(11,'Hello','Kitty','asdfasdf','01/01/2015','hellokitty@hk.com',NULL,'2',NULL),(12,'Test','One','test1password','01/01/2015','test1@test1.com',NULL,'6',NULL),(13,'Bob','Builder','asdfasdf','01/01/2015','bobbuilder@builder.com',NULL,'1',NULL);
+INSERT INTO `users` VALUES (5,'Andrea','DreDre','asdfasdf','01/01/2015','estrella.drea@gmail.com',NULL),(10,'Estrella','Star','asdfasdf','01/01/2015','an.estrella@yahoo.com',NULL),(12,'Test','One','test1password','01/01/2015','test1@test1.com',NULL),(13,'Bob','Builder','asdfasdf','01/01/2015','bobbuilder@builder.com',NULL),(15,'Bruce','Batman','asdfasdf','02/01/2015','batman@batman.com',NULL),(18,'WonderWoman','w_woman','wonderwoman','02/01/2015','wonder@woman.com',NULL),(19,'Peter Parker','SpiderMan','asdf1234','02/01/2015','spiderman@spiderman.com',NULL),(20,'green ','lantern','asdfasdf','02/01/2015','greenlantern@gl.com',NULL),(21,'jibber','jabber','jibberjabber','02/01/2015','jibberish@jj.com',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -111,4 +80,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-25 14:06:30
+-- Dump completed on 2015-02-17 14:23:03
